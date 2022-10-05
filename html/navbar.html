@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="EN" xml:lang="en">
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>Navbar Container</title>
+        <script src="../js/lib/jquery.js"></script>
+        <script src="../js/lib/angular.js"></script>
+        <script src="../resources/navigationElements.js"></script>
+    </head>
+    <body>
+        <div id="navbarContainer" ng-app="navbarApp" ng-controller="navbarController">
+            <div class="navigationItem navigationTitle">
+                Anubhav Sharma
+            </div>
+            <div ng-repeat="item in navigationElements" class="navigationItem">
+                <label for="{{item.title}}">{{item.name}}</label> 
+            </div>
+        </div>
+    </body>
+    <style>
+        #navbarContainer{
+            position: absolute;
+            top: 10vh;
+            left: 0vh;
+        }
+        .navigationTitle{
+            font-size: 70vh !important;
+            margin-left: 4vw !important;
+        }
+        .navigationItem{
+            display: inline;
+            margin-left: 1vw;
+            margin-right: 1vw;
+            font-size: 50vh;
+        }
+        body{
+            background-image: radial-gradient(white, rgb(234, 213, 213));
+            background-repeat: no-repeat;
+            height: 100vh;
+            overflow-y: hidden;
+        }
+    </style>
+    <script>
+        const navbarApp = angular.module("navbarApp",[]);
+        const navbarController = navbarApp.controller("navbarController", function($scope){
+            $scope.navigationElements = navigationElements;
+        });
+    </script>
+</html>

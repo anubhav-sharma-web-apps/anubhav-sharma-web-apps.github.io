@@ -1,0 +1,17 @@
+iframe{
+    border: none;
+}
+#navigationTab{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8%;
+}
+#sideNavigationTab{
+    position: absolute;
+    top: 1vh;
+    left: -1vw;
+    width: max-content;
+    height: 100vh;
+}
