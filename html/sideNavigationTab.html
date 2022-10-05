@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="EN" xml:lang="en">
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>Side Navbar Container</title>        
+        <script src="../js/lib/jquery.js"></script>
+        <script src="../js/lib/angular.js"></script>
+        <script src="../resources/navigationElements.js"></script>
+    </head>
+    <body>        
+        <div id="hamburgerMenu">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div id="sideNavbarContainer" ng-app="sideNavbarApp" ng-controller="sideNavbarController">
+            <ul>
+                <li ng-repeat="item in navigationElements">
+                    {{item.name}}
+                </li>
+            </ul>
+        </div>
+    </body>
+    <style>
+        #sideNavbarContainer{
+            position: absolute;
+            top:8vh;
+            width: 90vw;
+            visibility: hidden;
+        }
+        #hamburgerMenu{
+            position: absolute;
+            top: 0vh;
+            left: 3vh;
+        }
+        #hamburgerMenu div{
+            width: 5vh;
+            height: 1vh;
+            background-color: darkgray;
+            margin: 1vh 0;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            border: 1vh solid #ddd;
+            margin-top: -1vh; /* Prevent double borders */
+            background-color: #f6f6f6;
+            padding: 2vh;
+        }
+        li{
+
+        }
+    </style>
+    <script>
+    
+        const navbarApp = angular.module("sideNavbarApp",[]);
+        const navbarController = navbarApp.controller("sideNavbarController", function($scope){
+            $scope.navigationElements = navigationElements;
+        });        
+        const hamburgerMenu = $("#hamburgerMenuVisible");
+        var hamburgerMenuVisible = false;
+        
+        $("#hamburgerMenu").click(function(){
+            hamburgerMenuVisible=!hamburgerMenuVisible;
+            $("#sideNavbarContainer").css("visibility",hamburgerMenuVisible?"visible":"hidden");
+        });
+    </script>
+</html>
