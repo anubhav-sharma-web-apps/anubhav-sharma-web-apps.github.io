@@ -13,7 +13,7 @@
                 Anubhav Sharma
             </div>
             <div ng-repeat="item in navigationElements" class="navigationItem">
-                <label for="{{item.title}}">{{item.name}}</label> 
+                <label for="{{item.title}}" ng-click="updateContentFrame(item.title)">{{item.name}}</label> 
             </div>
         </div>
     </body>
@@ -24,8 +24,7 @@
             left: 0vh;
         }
         .navigationTitle{
-            font-size: 70vh !important;
-            margin-left: 4vw !important;
+            font-size: 80vh !important;
         }
         .navigationItem{
             display: inline;
@@ -34,7 +33,9 @@
             font-size: 50vh;
         }
         body{
-            background-image: radial-gradient(white, rgb(234, 213, 213));
+            /* background-image: radial-gradient(white, rgb(234, 213, 213)); */
+            background-color: black;
+            color: white;
             background-repeat: no-repeat;
             height: 100vh;
             overflow-y: hidden;
@@ -44,6 +45,9 @@
         const navbarApp = angular.module("navbarApp",[]);
         const navbarController = navbarApp.controller("navbarController", function($scope){
             $scope.navigationElements = navigationElements;
+            $scope.updateContentFrame = function(title){
+                parent.updateContentFrame(title);
+            }
         });
     </script>
 </html>

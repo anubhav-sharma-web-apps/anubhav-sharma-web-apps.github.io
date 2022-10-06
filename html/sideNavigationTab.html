@@ -15,7 +15,7 @@
         </div>
         <div id="sideNavbarContainer" ng-app="sideNavbarApp" ng-controller="sideNavbarController">
             <ul>
-                <li ng-repeat="item in navigationElements">
+                <li ng-repeat="item in navigationElements" ng-click="updateContentFrame(item.title)">
                     {{item.name}}
                 </li>
             </ul>
@@ -25,13 +25,17 @@
         #sideNavbarContainer{
             position: absolute;
             top:8vh;
-            width: 90vw;
-            visibility: hidden;
+            width: 0vw;
+            height: 90vh;
+            overflow-y: scroll;
         }
         #hamburgerMenu{
             position: absolute;
             top: 0vh;
-            left: 3vh;
+            left: 0vh;
+            width: 10vh;
+            height: 100vh;
+            background-color: black;
         }
         #hamburgerMenu div{
             width: 5vh;
@@ -47,13 +51,11 @@
         }
 
         ul li {
-            border: 1vh solid #ddd;
+            border: 1vh solid darkgrey;
             margin-top: -1vh; /* Prevent double borders */
-            background-color: #f6f6f6;
+            background-color: black;
+            color: white;
             padding: 2vh;
-        }
-        li{
-
         }
     </style>
     <script>
@@ -61,13 +63,16 @@
         const navbarApp = angular.module("sideNavbarApp",[]);
         const navbarController = navbarApp.controller("sideNavbarController", function($scope){
             $scope.navigationElements = navigationElements;
+            $scope.updateContentFrame = function(title){
+                parent.updateContentFrame(title);
+            }
         });        
         const hamburgerMenu = $("#hamburgerMenuVisible");
         var hamburgerMenuVisible = false;
         
         $("#hamburgerMenu").click(function(){
             hamburgerMenuVisible=!hamburgerMenuVisible;
-            $("#sideNavbarContainer").css("visibility",hamburgerMenuVisible?"visible":"hidden");
+            $("#sideNavbarContainer").css("width",hamburgerMenuVisible?"95vw":"0vh");
         });
     </script>
 </html>
