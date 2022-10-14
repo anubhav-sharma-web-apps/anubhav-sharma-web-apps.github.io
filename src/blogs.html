@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs</title>
+    <script src="../js/lib/jquery.js"></script>
+    <script src="../js/lib/angular.js"></script>
+    <script src="../resources/blogs.js"></script>
+</head>
+<body>
+    <div ng-app="blogApp" ng-controller="blogController">
+        <div class="blogEntry" ng-repeat="item in blogs" class="blogEntries">
+            <div class="blogTitle">{{item.title}}</div>
+            <div class="blogText">{{item.text}}</div>
+            <div class="blogActionBox">
+                <div ng-click="showEditBox(item.id)" class="blogActionEdit"><img src="../resources/imgs/edit.png" alt="Edit"></div>
+                <div ng-click="showViewBox(item.id)" class="blogActionView"><img src="../resources/imgs/view.png" alt="View"></div>
+                <div ng-click="showDeleteBox(item.id)" class="blogActionDelete"><img src="../resources/imgs/delete.png" alt="Delete"></div>
+            </div>
+        </div>
+        <div id="editModalBox">
+            <div id="editModalCloseBtn" onclick="closeEditModalBox()"><img id="editModalCloseIcon" src="../resources/imgs/close.png" alt="close"></div>
+            <textarea id="editModalTextBox"></textarea>        
+        </div>
+        <div id="editViewBox">
+            
+        </div>
+        <div id="editDeleteBox">
+            
+        </div>
+    </div>
+    <div id="disableFirstLayer"></div>
+    
+</body>
+    <script>
+        const blogApp = angular.module("blogApp",[]);
+        var handleShowEditBox = function(id){
+            $("#disableFirstLayer").css('display', 'block');
+            $("#editModalBox").css('display', 'block');
+            $("#editModalTextBox").text(allBlogs[id].text)
+        }
+        var closeEditModalBox = function(){
+            $("#disableFirstLayer").css('display', 'none');
+            $("#editModalBox").css('display', 'none');            
+        }
+        const blogController = blogApp.controller("blogController", function($scope){
+            $scope.blogs = allBlogs;
+            $scope.showEditBox = function(id){
+                handleShowEditBox(id);
+            }
+
+        });
+
+
+    </script>
+    <style>
+        :root{
+            --action-icon-size:1.2%;
+        }
+        #editModalCloseBtn{
+            size: 1vw;
+            border: 1 px solid rgb(84, 78, 78);
+            z-index:4;
+        }
+        #editModalCloseIcon:hover{
+            border: 2px solid rgb(84, 78, 78);
+        }
+        #editModalCloseIcon{
+            width: 1vw;
+            float: right;
+        }
+        textarea{
+            margin-left: 5%;
+            margin-top: 5%;
+            width: 90%;
+            height: 30%;
+            resize: none;
+        }
+        #editModalBox{
+            position: absolute;
+            z-index: 3;
+            top: 10%;
+            left: 20%;
+            width: 50%;
+            height: 50%;
+            border: 5px solid rgb(84, 78, 78);
+            background-color: whitesmoke;
+            display: none;
+        }
+        #disableFirstLayer{
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: none;
+        }
+        .blogActionEdit {
+            display: inline;
+        }
+        .blogActionView {
+            display: inline;
+        }
+        .blogActionDelete {
+            display: inline;
+        }
+        .blogActionBox{
+            display: inline;
+            margin-left: 88%;
+        }
+        .blogText{
+            padding: 1vw;
+        }
+        .blogEntry{
+            border: 2px solid grey;
+            border-radius: 1vh;
+        }
+        .blogTitle{
+            border: 1px solid grey;
+            padding-left: 1vw;
+            padding-right: 1vw;
+            padding-top: 1vh;
+            padding: 1vh;
+            background-color: darkgray;
+        }
+        .blogEntry{
+            margin: 2vw;
+        }
+        .blogActionEdit img{
+            width: var(--action-icon-size);
+            margin: 0.5%;
+        }
+        .blogActionEdit img:hover{
+            border: 2px solid darkgray;
+        }
+        .blogActionView img{
+            width: var(--action-icon-size);
+            margin: 0.5%;
+        }
+        .blogActionView img:hover{
+            border: 2px solid darkgray;
+        }
+        .blogActionDelete img{
+            width: var(--action-icon-size);
+            margin: 0.5%;
+        }
+        .blogActionDelete img:hover{
+            border: 2px solid darkgray;
+        }
+    </style>
+</html>

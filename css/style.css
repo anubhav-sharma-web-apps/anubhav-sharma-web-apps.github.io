@@ -4,7 +4,7 @@ iframe{
 #navigationTab{
     position: absolute;
     top: 0;
-    left: 5vw;
+    left: 0vw;
     width: 100vw;
     height: 8vh;
 }
@@ -14,6 +14,7 @@ iframe{
     left: 0vw;
     width: max-content;
     height: 100vh;
+    z-index: 999999;
 }
 #contentTab{
     position: absolute;
@@ -24,7 +25,6 @@ iframe{
 }
 body{
     overflow: hidden;
-    background-color: black;
 }
 
 /* when in mobile mode*/
@@ -32,7 +32,7 @@ body{
     #navigationTab{
         position: absolute;
         top: 0;
-        left: 10vw;
+        left: 0vw;
         width: 100vw;
         height: 8vh;
     }
